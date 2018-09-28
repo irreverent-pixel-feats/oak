@@ -1,4 +1,4 @@
-# oak
+# oak [![Build Status](https://travis-ci.com/irreverent-pixel-feats/oak.svg?branch=master)](https://travis-ci.com/irreverent-pixel-feats/oak)
 
 ## Description
 
