@@ -19,6 +19,7 @@ import qualified Ultra.Data.Text as T
 import Ultra.Options.Applicative (
     Parser
   , envvarWithDefaultWithRender
+  , long
   , option
   , eitherTextReader
   )
@@ -51,8 +52,8 @@ parseLogLevel = flip lookup loglevels
 eitherLogLevel :: T.Text -> Either T.Text Log.Level
 eitherLogLevel t = maybe (Left t) pure $ parseLogLevel t
 
-logLevelP :: [(T.Text, T.Text)] -> T.Text -> Parser Log.Level
-logLevelP envs env = option (eitherTextReader eitherLogLevel) $ envvarWithDefaultWithRender
+logLevelP :: [(T.Text, T.Text)] -> T.Text -> T.Text -> Parser Log.Level
+logLevelP envs longname env = option (eitherTextReader eitherLogLevel) . (long (T.unpack longname) <>) $ envvarWithDefaultWithRender
   parseLogLevel
   renderLogLevel
   envs
